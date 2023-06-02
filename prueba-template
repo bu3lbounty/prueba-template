@@ -1,0 +1,60 @@
+id: missing-security-headers
+info:
+  name: Missing Security Headers
+  severity: medium
+
+requests:
+- name: X-Frame-Options Header
+  type: http
+  method: GET
+  path:
+    - /
+  matchers:
+    - status-code: 200
+  expected:
+    - headers:
+        - X-Frame-Options: '!.*'
+
+- name: Content-Security-Policy Header
+  type: http
+  method: GET
+  path:
+    - /
+  matchers:
+    - status-code: 200
+  expected:
+    - headers:
+        - Content-Security-Policy: '!.*'
+
+- name: X-XSS-Protection Header
+  type: http
+  method: GET
+  path:
+    - /
+  matchers:
+    - status-code: 200
+  expected:
+    - headers:
+        - X-XSS-Protection: '!.*'
+
+- name: X-Content-Type-Options Header
+  type: http
+  method: GET
+  path:
+    - /
+  matchers:
+    - status-code: 200
+  expected:
+    - headers:
+        - X-Content-Type-Options: '!.*'
+
+- name: Strict-Transport-Security Header
+  type: http
+  method: GET
+  path:
+    - /
+  matchers:
+    - status-code: 200
+  expected:
+    - headers:
+        - Strict-Transport-Security: '!.*'
